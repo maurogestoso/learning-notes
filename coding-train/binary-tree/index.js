@@ -1,18 +1,16 @@
 let tree;
 
-function setup () {
-    createCanvas(600, 400);
-    background(51);
+function setup() {
+  createCanvas(600, 400);
+  background(51);
 
-    tree = new Tree();
+  tree = new Tree();
 
-    for (let i = 0; i < 10; i++) {
-        tree.addValue(floor(random(0, 100)));
-    }
+  for (let i = 0; i < 10; i++) {
+    tree.addValue(floor(random(0, 100)));
+  }
 
-    tree.traverse();
+  tree.traverse();
 }
 
-function draw () {
-    
-}
+function draw() {}

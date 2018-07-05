@@ -1,54 +1,59 @@
 class Node {
-  constructor (val, x, y) {
-      this.value = val;
-      this.left = null;
-      this.right = null;
-      this.x = x;
-      this.y = y;
-      this.r = 8;
+  constructor(val, x, y) {
+    this.value = val;
+    this.left = null;
+    this.right = null;
+    this.x = x;
+    this.y = y;
   }
 
-  draw () {
-      ellipse(this.x, this.y, this.r, this.r);
+  addNode(n) {
+    if (n.value < this.value) {
+      if (this.left === null) {
+        this.left = n;
+        this.left.x = this.x - 50;
+        this.left.y = this.y + 20;
+      } else {
+        this.left.addNode(n);
+      }
+    } else if (n.value > this.value) {
+      if (this.right === null) {
+        this.right = n;
+        this.right.x = this.x + 50;
+        this.right.y = this.y + 20;
+      } else {
+        this.right.addNode(n);
+      }
+    }
   }
 
-  addNode (n) {
-      if (n.value < this.value) {
-          if (this.left === null) {
-              this.left = n;
-          } else {
-              this.left.addNode(n);
-          }
-      } else if (n.value > this.value) {
-          if (this.right === null) {
-              this.right = n;
-          } else {
-              this.right.addNode(n);
-          }
-      }
+  visit(parent) {
+    if (this.left !== null) {
+      this.left.visit(this);
+    }
+
+    console.log(this.value);
+
+    fill(255);
+    stroke(255);
+    line(parent.x, parent.y, this.x, this.y);
+    noStroke();
+    textAlign(CENTER);
+    text(this.value, this.x, this.y);
+
+    if (this.right !== null) {
+      this.right.visit(this);
+    }
   }
 
-  visit () {
-      if (this.left !== null) {
-          this.left.visit();
-      }
-
-      console.log(this.value);
-      
-      if (this.right !== null) {
-          this.right.visit();
-      }
-  }
-
-  search (val) {
-      if (val === this.value) {
-        return this;
-      } else if (val < this.value && this.left !== null) {
-        return this.left.search(val);
-      } else if (val > this.value && this.right !== null) {
-        return this.right.search(val);
-      }
-      return null;
+  search(val) {
+    if (val === this.value) {
+      return this;
+    } else if (val < this.value && this.left !== null) {
+      return this.left.search(val);
+    } else if (val > this.value && this.right !== null) {
+      return this.right.search(val);
+    }
+    return null;
   }
 }
-
