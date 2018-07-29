@@ -1,3 +1,25 @@
+<!-- TOC -->
+
+- [Automate Daily Development Tasks with Bash](#automate-daily-development-tasks-with-bash)
+  - [1. Navigate the Filesystem](#1-navigate-the-filesystem)
+  - [2. View Files and Folders](#2-view-files-and-folders)
+  - [3. Create and Delete Files and Folders](#3-create-and-delete-files-and-folders)
+  - [4. Move and Copy Files and Folders](#4-move-and-copy-files-and-folders)
+  - [5. Find Files and Folders](#5-find-files-and-folders)
+  - [6. Search for text with grep](#6-search-for-text-with-grep)
+  - [7. Make HTTP requests](#7-make-http-requests)
+  - [Functions](#functions)
+  - [Exit Status](#exit-status)
+  - [Conditionals](#conditionals)
+    - [Comparison Primaries](#comparison-primaries)
+    - [Ternary statement](#ternary-statement)
+    - [Example](#example)
+  - [Pipe and Redirect Output](#pipe-and-redirect-output)
+    - [Example](#example-1)
+    - [Redirecting Output](#redirecting-output)
+
+<!-- /TOC -->
+
 # Automate Daily Development Tasks with Bash
 
 ## 1. Navigate the Filesystem
