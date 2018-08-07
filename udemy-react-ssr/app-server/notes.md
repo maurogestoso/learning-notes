@@ -165,3 +165,34 @@ import Home from "./components/Home";
 
 ReactDOM.hydrate(<Home />, document.getElementById("root"));
 ```
+
+## Routes
+
+http://react-ssr-api.herokuapp.com
+
+- /users
+- /admins
+- /auth/google
+- /current_user
+- /logout
+
+## State Management
+
+### Reducers
+
+- users
+- admins
+- auth
+
+### Action Creators
+
+- fetchUsers
+- fetchAdmins
+- fetchCurrentUsers
+
+### 4 Big Challenges
+
+- Redux needs different config on server and client
+- Aspects of auth need to be handled on the server. Normally this is only on browser!
+- Way of detecting when all initial data load actions are completed on server
+- State rehydration on client
