@@ -196,3 +196,66 @@ http://react-ssr-api.herokuapp.com
 - Aspects of auth need to be handled on the server. Normally this is only on browser!
 - Way of detecting when all initial data load actions are completed on server
 - State rehydration on client
+
+### 1. Data Loading on Server
+
+The problem with data loading is that `renderToString` doesn't call the lifecycle methods of a component. This means that our traditional method for loading data into a component with `componentDidMount` won't work.
+
+The following approach is similar to what frameworks like Next.js use to load data server-side:
+
+```
+Figure out what components to render (based on URL)
+          v
+Call a "loadData" method attached to each component
+          v
+      wait for response...
+          v
+Somehow detect all requests are complete
+          v
+Render app with collected data
+          v
+Send response to browser
+```
+
+Pros:
+
+- Only render the app once
+- Makes data requirements of each component clear
+
+Cons:
+
+- Requires a ton of code
+
+`react-router-config` allows us to configure our routes as a JSON array of objects. It's an official React Router library designed to solve problems with SSR. Our routes will now look like:
+
+```js
+// src/client/Routes.js
+import React from "react";
+import Home from "./components/Home";
+import UsersList from "./components/UsersList";
+
+export default [
+  {
+    path: "/",
+    exact: true,
+    component: Home
+  },
+  {
+    path: "/users",
+    component: UsersList
+  }
+];
+```
+
+To render these routes we can use the `renderRoutes` helper from `react-router-config`:
+
+```js
+ReactDOM.hydrate(
+  <Provider store={store}>
+    <BrowserRouter>
+      <div>{renderRoutes(routes)}</div>
+    </BrowserRouter>
+  </Provider>,
+  document.getElementById("root")
+);
+```
