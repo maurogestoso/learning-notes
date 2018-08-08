@@ -1,16 +1,15 @@
 import React from "react";
-import Home from "./components/Home";
-import UsersList, { loadData } from "./components/UsersList";
+import HomePage from "./pages/HomePage";
+import UsersListPage from "./pages/UsersListPage";
 
 export default [
   {
+    ...HomePage,
     path: "/",
-    exact: true,
-    component: Home
+    exact: true
   },
   {
-    path: "/users",
-    component: UsersList,
-    loadData
+    ...UsersListPage,
+    path: "/users"
   }
 ];
