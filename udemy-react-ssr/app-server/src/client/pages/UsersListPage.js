@@ -12,6 +12,7 @@ class UsersListPage extends React.Component {
   }
 
   render() {
+    console.log("UsersListPage: render!");
     return (
       <div>
         <h2>List of users:</h2>
