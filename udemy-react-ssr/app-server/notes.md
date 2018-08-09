@@ -259,3 +259,40 @@ ReactDOM.hydrate(
   document.getElementById("root")
 );
 ```
+
+## Authentication
+
+In client side rendered apps, authentication is a contract between the browser and the API.
+
+```
+Browser
+  |
+  |   Auth contract
+  |
+  v
+API
+```
+
+In a server-side rendered app, this contract will be different:
+
+```
+Browser
+  |
+  |   Identifying info
+  |
+  v
+Server
+  |
+  |   Identifying info
+  |
+  v
+API
+```
+
+Cookie based authentication works for communicating between the browser and the API directly. But if we have a cookie issued by the API and we make a request to the app server, the app server won't be able to talk to the API on the browser's behalf.
+
+To solve this, we are going to set up a proxy for the API server on our SSR server. This way, the browser won't event know that the API server exists, it will be the SSR server's job to forward auth requests appropriately.
+
+### Why not JWTs?
+
+Cookies are automatically attached to HTTP requests, JWTs are not. If we configure our server for JWT authentication and a user requests "/", they would have to make a 2nd request to send a JWT, defeating the purpose of SSR.
