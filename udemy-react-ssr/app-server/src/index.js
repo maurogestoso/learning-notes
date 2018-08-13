@@ -35,7 +35,14 @@ app.get("*", (req, res) => {
 
   Promise.all(dataLoadingPromises).then(results => {
     console.log("server: Finished loading data");
-    res.send(renderer(req, store));
+    const context = {};
+    const content = renderer(req, store, context);
+
+    if (context.notFound) {
+      res.status(404);
+    }
+
+    res.send(content);
   });
 });
 
