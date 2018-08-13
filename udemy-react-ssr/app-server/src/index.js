@@ -12,7 +12,12 @@ app.use(
   "/api",
   proxy("http://react-ssr-api.herokuapp.com", {
     proxyReqOptDecorator(options) {
-      // to do with Google auth and the react-ssr-api
+      /*
+        This header says to the API server:
+        "The origin of this request is localhost:3000"
+        The API server will add a query param to the google auth URL to redirect
+        to the origin once authentication is done
+      */
       options.headers["x-forwarded-host"] = "localhost:3000";
       return options;
     }

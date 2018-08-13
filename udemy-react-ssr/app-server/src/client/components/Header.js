@@ -3,9 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 const styles = {
-  header: {
-    display: "flex"
-  },
+  header: {},
   title: {},
   nav: {}
 };
@@ -18,14 +16,22 @@ const Header = ({ auth }) => {
   );
 
   return (
-    <header style={styles.header}>
-      <Link to="/">React SSR</Link>
-      <nav>
-        <Link to="/users">Users</Link>
-        <Link to="/admins">Admins</Link>
-        {authButton}
-      </nav>
-    </header>
+    <nav>
+      <div className="nav-wrapper">
+        <Link to="/" className="brand-logo">
+          React SSR
+        </Link>
+        <ul className="right">
+          <li>
+            <Link to="/users">Users</Link>
+          </li>
+          <li>
+            <Link to="/admins">Admins</Link>
+          </li>
+          <li>{authButton}</li>
+        </ul>
+      </div>
+    </nav>
   );
 };
 
